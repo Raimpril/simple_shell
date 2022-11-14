@@ -26,9 +26,11 @@
 /* for convert_number() */
 #define CONVERT_LOWERCASE	1
 #define CONVERT_UNSIGNED	2
+
 /* 1 if using system getline() */
 #define USE_GETLINE 0
 #define USE_STRTOK 0
+
 #define HIST_FILE	".simple_shell_history"
 #define HIST_MAX	4096
 
@@ -46,6 +48,7 @@ typedef struct liststr
 	int num;
 	char *str;
 	struct liststr *next;
+
 } list_t;
 
 /**
@@ -63,7 +66,7 @@ typedef struct liststr
  *@environ: custom modified copy of environ from LL env
  *@history: the history node
  *@alias: the alias node
- *@env_changed: on if environ was changed
+ *@env_changed: on if environ was change
  *@status: the return status of the last exec'd command
  *@cmd_buf: address of pointer to cmd_buf, on if chaining
  *@cmd_buf_type: CMD_type ||, &&, ;
@@ -96,7 +99,6 @@ typedef struct passinfo
 #define INFO_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 	0, 0, 0}
-
 /**
  *struct builtin - contains a builtin string and related function
  *@type: the builtin command flag
@@ -111,7 +113,7 @@ typedef struct builtin
 
 /* toem_shloop.c */
 int hsh(info_t *, char **);
-int find_builtin(info_t *)
+int find_builtin(info_t *);
 void find_cmd(info_t *);
 void fork_cmd(info_t *);
 
@@ -119,13 +121,16 @@ void fork_cmd(info_t *);
 int is_cmd(info_t *, char *);
 char *dup_chars(char *, int, int);
 char *find_path(info_t *, char *, char *);
+
 /* loophsh.c */
 int loophsh(char **);
+
 /* toem_errors.c */
 void _eputs(char *);
 int _eputchar(char);
 int _putfd(char c, int fd);
 int _putsfd(char *str, int fd);
+
 /* toem_string.c */
 int _strlen(char *);
 int _strcmp(char *, char *);
